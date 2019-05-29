@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
-import $ from 'jquery';
 
 window.React = React;
 
@@ -41,6 +40,8 @@ export class App extends Component {
   }
 
   loadCommentsFromServer() {
+    window.fetch(this.props.url).then(data => data.json()).then(result => console.log(result)).catch(error => error ? console.error(error) : '')
+    
     $.ajax({
       url: this.props.url,
       data: { limit: this.props.perPage, offset: this.state.offset },
